@@ -37,14 +37,14 @@ elif choice == "CSV": # Converting to CSV the file will be located locally in cs
         print("Conversion Successful. The CSV output is in csv_tswift_data.csv")
     except:
         print("An exception occured. File wasn't able to be transformed to CSV format")
-elif choice == "SQL": # Converting to SQL the file will be located locally in tswift_database
+elif choice == "SQL": # Converting to SQL the file will be located locally in tswift_database.db
     try:
-        conn = sqlite3.connect('tswift_database')
+        conn = sqlite3.connect('tswift_database.db')
         c = conn.cursor()
         c.execute('CREATE TABLE IF NOT EXISTS tswift (song name,album,artist,release_date,popularity,danceability,acousticness,energy,instrumentalness,liveness,loudness,speechiness,valence,tempo,length_mins)')
         conn.commit()
         tswift_data.to_sql('tswift', conn, if_exists='replace', index = False)
-        print("Conversion Successful. The SQL output is in tswift_database")
+        print("Conversion Successful. The SQL output is in tswift_database.db")
         view = input("To view the contents of the database type yes otherwise type no and hit enter\n")
         if view == "yes":
             c.execute('''  SELECT * FROM tswift  ''')
