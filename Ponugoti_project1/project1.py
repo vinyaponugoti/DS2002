@@ -4,7 +4,11 @@ import sqlite3
 # Benchmark 1.1: Ingesting a pre-defined data source
 # Data File from Kaggle: https://www.kaggle.com/datasets/thespacefreak/taylor-swift-spotify-data?resource=download
 # This is a csv that contains spotify data about Taylor Swift's songs including the song and album names and scores for certain characteristics such as popularity, loudness, danceability that spotify rates the song on based off their own internal data
-tswift_data = pd.read_csv('spotify_taylorswift.csv')
+
+try:
+    tswift_data = pd.read_csv('spotify_taylorswift.csv')
+except FileNotFoundError:
+    print("spotify_taylorswift.csv not found, data processor needs this file to exist in your local directory to work")
 
 
 # Benchmark 1.3: Modifying the number of columns from the source to the destination and transforming the columns
